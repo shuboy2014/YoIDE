@@ -8,7 +8,7 @@ $(document).ready(function (){
     var DEFAULT_MODE = 'c_cpp';
 
     /*compile and run url */
-    var COMPILE_AND_RUN_URL = '/compile-and-run/'
+    var COMPILE_AND_RUN_URL = '/compile-and-run/';
 
     /*Initial code in ace-editor */
     var INITIAL_CODE={};
@@ -147,24 +147,21 @@ $(document).ready(function (){
         $("#compile-and-run").prop("disabled",true);
         
         /* Check if custom input in checked or not */
-        var custom_input ;
+        var custom_input = null ;
         if($('#custom-input-checkbox').prop("checked") == true ){
              custom_input = document.getElementById("custom-input-textbox").value ;  
         }
-        else{
-            var custom_input = null ;
-        } 
 
         /* ready json of request */
         var request_json = {
             "lang" : current_lang,
             "source" : editor_content ,
             "input" : custom_input 
-        }
+        };
         
         /* ajax request to server */
         $.ajax({
-            url:"https://yoide.herokuapp.com/compile-and-run",
+            url:"/compile-and-run/",
             data : request_json ,
             type : 'POST',
             dataType:'json',
