@@ -10,6 +10,7 @@ def index(request):
 
 
 def compile_and_run(request):
+	
     if request.method == "POST" and request.is_ajax():
         return JsonResponse({"name":"vijay chutiya"})
     else:

@@ -167,12 +167,12 @@ $(document).ready(function (){
             url:"https://yoide.herokuapp.com/compile-and-run",
             data : request_json ,
             type : 'POST',
-            dataType : 'json',
+            dataType:'json',
             success : function(response){
-                alert(reponse.status);
+                alert("Success");
             },
             error : function(){
-                console.log("failed");
+                alert("failed");
             }
         });
 
