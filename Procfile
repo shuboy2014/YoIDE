@@ -1,0 +1,1 @@
+web: gunicorn yoide.wsgi --log-file -

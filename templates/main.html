@@ -1,0 +1,165 @@
+{% load  staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta name="author" content="Shubham Aggarwal" >
+     <title>YoIDE | Online IDE</title>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+     <link rel="stylesheet"  type="text/css" href="{% static "css/bootstrap.min.css" %}" />
+</head>
+<body>
+{#   Start  of navigation bar #}
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+                <div class="navbar-header">
+                     <a class="navbar-brand" href="/"><strong>YoIDE.in</strong></a>
+                </div>
+                <div class="nav navbar-right ">
+                    <a class="navbar-brand" href="/feedback">feedback</a>
+                </div>
+                <div class="nav navbar-right ">
+                    <a class="navbar-brand" href="/contact-us/">Contact us</a>
+                </div>
+                <div class="nav navbar-right ">
+                    <a class="navbar-brand" href="/">New Code</a>
+                </div>
+        </div>
+    <                       <select class="form-control" name="lang" id="languages">
+								<option value="C">C (gcc 4.8.1)</option>
+								<option value="CPP" selected>C++ (g++ 4.8.1)</option>
+								<option value="CSHARP">C#</option>
+								<option value="CLOJURE">Clojure (clojure 1.1.0)</option>
+								<option value="CSS">CSS</option>
+								<option value="HASKELL">Haskell (ghc 7.4.1)</option>
+								<option value="JAVA">Java (openjdk 1.7.0_09)</option>
+								<option value="JAVASCRIPT">JavaScript</option>
+								<option value="OBJECTIVEC">Objective-C (clang 3.3)</option>
+								<option value="PERL">Perl (perl 5.14.2)</option>
+								<option value="PHP">PHP (php 5.3.10)</option>
+								<option value="PYTHON">Python (python 2.7.3)</option>
+								<option value="R">R (RScript 2.14.1)</option>
+								<option value="RUBY">Ruby (ruby 2.1.1)</option>
+								<option value="RUST">Rust (rustc 1.4.0)</option>
+								<option value="SCALA">Scala (scalac 2.9.1)</option>
+							</select>/nav>
+{#    End of navigation bar #}
+
+     <div class="container">
+         <div class="row">
+             <div class="editor-top-bar">
+                  <div class="col-md-2 pull-left">
+                       <select class="form-control" name="lang" id="languages">
+								<option value="C">C (gcc 4.8.1)</option>
+								<option value="CPP" selected>C++ (g++ 4.8.1)</option>
+								<option value="CSHARP">C#</option>
+								<option value="CLOJURE">Clojure (clojure 1.1.0)</option>
+								<option value="CSS">CSS</option>
+								<option value="HASKELL">Haskell (ghc 7.4.1)</option>
+								<option value="JAVA">Java (openjdk 1.7.0_09)</option>
+								<option value="JAVASCRIPT">JavaScript</option>
+								<option value="OBJECTIVEC">Objective-C (clang 3.3)</option>
+								<option value="PERL">Perl (perl 5.14.2)</option>
+								<option value="PHP">PHP (php 5.3.10)</option>
+								<option value="PYTHON">Python (python 2.7.3)</option>
+								<option value="R">R (RScript 2.14.1)</option>
+								<option value="RUBY">Ruby (ruby 2.1.1)</option>
+								<option value="RUST">Rust (rustc 1.4.0)</option>
+								<option value="SCALA">Scala (scalac 2.9.1)</option>
+							</select>
+                  </div>
+                  <div class="pull-right col-md-2">
+                      <select class="form-control" name="lang" id="themes">
+                                <option value="twilight">Twilight</option>
+                                <option value="chrome">Chrome</option>
+                                <option value="ckouds">Clouds</option>
+                                <option value="clouds-midnight">Clouds Midnight</option>
+                                <option value="cobalt">Cobalt</option>
+                                <option value="crimson-editor">Crimson Editor</option>
+                                <option value="dawn">Dawn</option>
+                                <option value="eclipse">Eclipse</option>
+                                <option value="idle-fingers">Idle Fingers</option>
+                                <option value="kr-theme">Kr Theme</option>
+                                <option value="merbivore">Merbivore</option>
+                                <option value="merivore-soft">Merbivore Soft</option>
+                                <option value="mono-industrial">Mono Industrial</option>
+                                <option value="monokai">Monokai</option>
+                                <option value="pastel-on-dark">Pastel On Dark</option>
+                                <option value="solarized-dark">Solarized Dark</option>
+                                <option value="solarized-light"">Solarized Light</option>
+                                <option value="textmate">TextMate</option>
+                                <option value="tomorrow">Tomorrow</option>
+                                <option value="vibrant-ink">Vibrant Ink</option>
+                      </select>
+                  </div>
+             </div>
+         </div>
+{#         End of 1st Row top-editor-bar #}
+
+
+
+         <div class="row">
+             <div class="col-md-12">
+                 <pre id="top-editor"></pre>
+                 <div id="editor-statusbar"></div>
+                 <div id="down-efitor"></div>
+             </div>
+         </div>
+{#         End of 2nd Row  code-editor-box #}
+
+
+
+         <div class="row container">
+             <input type="checkbox" name="tc-checkbox" id="custom-input-checkbox" >
+             Use custom input for testing your code
+             <div class="pull-right">
+                 <button type="button" value="compile-button" id="conpile-button" class="btn btn-success"><span class="glyphicon glyphicon-search"></span>Compile it</button>
+                 <button type="button" value="run-button" id="run-button" class="btn btn-success">Yo(run) it</button>
+             </div>
+         </div>
+{#         End of 3nd Row compile and run button#}
+
+
+
+         <div class="custom-input-container" style="display: none;">
+                <textarea rows="4" cols="160" id="custom-input" placeholder="Write your Inputs to program" class="nice-textarea" >
+
+                </textarea>
+         </div>
+{#         End of 4nd Row#}
+
+
+
+         <div class="row">
+
+         </div>
+{#         End of 5nd Row#}
+
+
+     </div>
+{#    End of container#}
+
+    <script src="src/theme-twilight.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="{% static "js/yoide.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{%  static "src/ace.js" %}" type="text/javascript" charset="utf-8"></script>
+    <script src=""  charset="utf-8" ></script>
+    <script src=""  charset="utf-8" ></script>
+    <script src=""  charset="utf-8" ></script>
+    <script src=""  charset="utf-8" ></script>
+    <script src=""  charset="utf-8" ></script>
+    <script src=""  charset="utf-8" ></script>
+    <script src=""  charset="utf-8" ></script>
+    <script src=""  charset="utf-8" ></script>
+    <script src=""  charset="utf-8" ></script>
+    <script src=""  charset="utf-8" ></script>
+    <script src=""  charset="utf-8" ></script>
+    <script src=""  charset="utf-8" ></script>
+    <script src=""  charset="utf-8" ></script>
+    <script src=""  charset="utf-8" ></script>
+    <script src=""  charset="utf-8" ></script>
+    <script src=""  charset="utf-8" ></script>
+    <script src=""  charset="utf-8" ></script>
+</body>
+</html>

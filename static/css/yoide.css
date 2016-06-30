@@ -1,0 +1,59 @@
+/* Top to Editor */
+.Top-to-editor {
+	margin: 0;
+	padding:1%;
+	height: 56px;
+	background-color: rgb(245, 245, 245);
+}
+
+/* Download button */
+.download-btn{
+    padding-left: 696px ;
+}
+
+/* Editor */
+#editor{
+    margin: 0%;
+    height: 425px;
+}
+
+/* bottom-to-editor*/
+#bottom-to-editor{
+    margin:0%;
+    height:25px;
+    background-color: rgb(245, 245, 245);
+}
+/* Checkbox */
+#custom-input-checkbox{
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.custom-input-container{
+    display: none;
+    margin-top: 10px ;
+}
+
+hr {
+   display: block;
+   position: relative;
+   padding: 0;
+   margin: 8px auto;
+   height: 0;
+   width: 100%;
+   max-height: 0;
+   font-size: 1px;
+   line-height: 0;
+   clear: both;
+   border: none;
+   border-top: 1px solid #aaaaaa;
+   border-bottom: 1px solid #ffffff;
+}
+
+.code-status{
+    display: none;
+    border-color: black;
+    border-style: dashed;
+    margin-top: 6px ;
+    padding:1%;
+}
