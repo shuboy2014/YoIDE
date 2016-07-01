@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>YoIDE | Online IDE</title>
@@ -8,7 +8,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <link rel="stylesheet"  type="text/css" href="{% static "css/bootstrap.min.css" %}" />
     <link rel="stylesheet" type="text/css" href="{% static "css/yoide.css" %}"/>
-    <style> body{ background-image: url("{% static "background.png" %}");}</style>
+{#    <style> body{ background-image: url("{% static "background.png" %}");}</style>#}
+    <style> body{ background-color: #D3D3D3 ;}</style>
+
 </head>
 <body>
 
@@ -29,6 +31,7 @@
         </div>
     </nav>
 {#    Container#}
+
 <div class="container">
 {#    Row-1 (Top-to-editor)#}
     <div class="row">
@@ -107,31 +110,97 @@
     </div>
 
 
-{#  Row-5 output result #}
-    <div class="code-status">
-        <div class="error-panel">
-            <p><strong>Error-status</strong></p>
-            <hr>
-            <pre class="error-status"></pre>
-        </div>
-        <div class="output-panel">
+{#  Row-5 if compilation successfully  #}
+    <div class="compile-done" id="compile-success">
+        <div class="output-status" >
             <p><strong>Output</strong></p>
             <hr>
-            <pre class="output-status"></pre>
+            <pre id="output-success-pre"></pre>
         </div>
-        <div class="input-panel">
+        <div class="input-staus" >
             <p><strong>Input</strong></p>
             <hr>
-            <pre class="output-status"></pre>
+            <pre id="input-success-pre"></pre>
+        </div>
+        <div class="additional-success-details">
+            <div class="row">
+                <div class="col-md-4">
+                    <p><strong>Run Status</strong></p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Time (sec)</strong></p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Memory (KB)</strong></p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-4">
+                    <p id="compile-success-status"></p>
+                </div>
+                <div class="col-md-4">
+                    <p id="compile-success-time"></p>
+                </div>
+                <div class="col-md-4">
+                    <p id="compile-success-memory"></p>
+                </div>
+            </div>
         </div>
     </div>
+
+    {#  Row-6 if compilation failed  #}
+    <div class="compile-not-done" id="compile-failed">
+        <div class="compile-status">
+            <p><strong>Compilation Log</strong></p>
+            <hr>
+            <pre id="compile-failed-pre" style="background-color: lightcoral"></pre>
+        </div>
+        <div class="output-status" >
+            <p><strong>Output</strong></p>
+            <hr>
+            <pre id="output-failed-pre">Standard input is empty</pre>
+        </div>
+        <div class="input-panel" >
+            <p><strong>Input</strong></p>
+            <hr>
+            <pre id="input-failed-pre"></pre>
+        </div>
+        <div class="additional-failed-details">
+            <div class="row">
+                <div class="col-md-4">
+                    <p><strong>Run Status</strong></p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Time (sec)</strong></p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Memory (KB)</strong></p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-4">
+                    <p>CE</p>
+                </div>
+                <div class="col-md-4">
+                    <p id="compile-failed-time"></p>
+                </div>
+                <div class="col-md-4">
+                    <p id="compile-failed-memory"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 
 {#    Footer#}
    	<div class="container footer">
         <br> <hr> <br>
-        <span> Powered by <a href="https://www.hackerearth.com/docs/api/developers/code/v3/" target="_blank" title="Hackerearth API">HackerEarth API</a> </span>
-        <span class="pull-right"> Copyrights © <a href="http://github.com/shuboy2014" title="Github" >Shubham Aggarwal</a> 2016</span>
+        <a href="https://hackerearth.com" target="_blank"><img src="https://hackerearth.global.ssl.fastly.net/static/hackerearth/images/badge/HE_badge_on_light.png" alt="Dark badge"></a>
+        <p class="pull-right"> Copyrights © <a href="http://github.com/shuboy2014" title="Github" >Shubham Aggarwal</a> 2016</p>
         <br>
         <br>
     </div>
@@ -166,5 +235,9 @@
     <script src="{% static "src/theme-vibrant_ink.js" %}" type="text/javascript" charset="utf-8"></script>
     <script src="{% static "src/theme-terminal.js" %}" type="text/javascript" charset="utf-8"></script>
     {# end of theme scripts #}
+
+<div>
+     <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
+</div>
 </body>
 </html>

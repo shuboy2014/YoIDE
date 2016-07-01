@@ -21,7 +21,7 @@
 #bottom-to-editor{
     margin:0%;
     height:25px;
-    background-color: rgb(245, 245, 245);
+    background-color: #D3D3D3;
 }
 /* Checkbox */
 #custom-input-checkbox{
@@ -50,10 +50,16 @@ hr {
    border-bottom: 1px solid #ffffff;
 }
 
-.code-status{
+.compile-done{
     display: none;
-    border-color: black;
-    border-style: dashed;
     margin-top: 6px ;
     padding:1%;
+    background-color: #D3D3D3;
+}
+
+.compile-not-done{
+    display: none;
+    margin-top: 6px ;
+    padding:1%;
+    background-color: #D3D3D3;
 }

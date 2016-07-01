@@ -24,7 +24,10 @@ SECRET_KEY = 'hrg6x8k)m3*vr2jfqzat=%%r-(+m+6p&0a@_a41s1()71n1moa'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
+
+
 
 
 # Application definition
@@ -132,8 +135,6 @@ DATABASES['default'].update(db_from_env)
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-# Allow all host headers
-ALLOWED_HOSTS = ['*']
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/

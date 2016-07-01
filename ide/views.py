@@ -1,28 +1,37 @@
 from django.shortcuts import render
-from django.http import HttpResponse , JsonResponse
-# Create your views here.
+from django.http import  JsonResponse
+import requests
 
 RUN_URL = "http://api.hackerearth.com/code/run/"
 CLIENT_SECRET_KEY="fc9bab4fc37aeeb507292c2c5a59e008ee8d345b"
 
 
 def index(request):
-    return render(request,"MainYoIde.html", {})
+    return render(request, "MainYoIde.html", {})
 
 
 def compile_and_run(request):
-    print request.method
-    print request.is_ajax()
     if request.method == "POST" and request.is_ajax():
-        return JsonResponse({"name" : "vijay chutiya"})
+        data = {
+            'client_secret': CLIENT_SECRET_KEY,
+            'async': 0,
+            'source': request.POST.get("source"," "),
+            'lang': request.POST.get("lang",""),
+            'time_limit': 5,
+            'memory_limit': 262144,
+        }
+        if request.POST.get("input", ""):
+            data['input'] = request.POST.get("input", "")
+        response_data = requests.post(RUN_URL, data=data)
+        return JsonResponse(response_data.json(), safe=False)
     else:
-        return HttpResponse('<h1>Hello these , its Compile code request . </h1>')
+        return render("request", "error.html", {"request": " Oops bad request !! "})
 
 
 def contact_us(request):
-    return HttpResponse('<h1>We will connect to you shortly .</h1>')
+    return render("request", "contact-us.html", {})
 
 
 def feedback(request):
-    return HttpResponse('<h1>We will connect to you shortly .</h1>')
+    return render("request", "feedback.html", {})
 

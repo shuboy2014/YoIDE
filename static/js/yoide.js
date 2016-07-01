@@ -1,6 +1,7 @@
 
 /* On document load */
 $(document).ready(function (){
+
     /* default theme */
     var DEFAULT_THEME = "terminal";
 
@@ -41,6 +42,8 @@ $(document).ready(function (){
     FILE_EXTENSIONS['PHP']=".php";
     FILE_EXTENSIONS['PYTHON']=".py";
     FILE_EXTENSIONS['RUBY']=".rb";
+
+
 
 // START OF ACE EDITOR INITIATION
     ace.require('ace/ext/language_tools');
@@ -139,10 +142,20 @@ $(document).ready(function (){
     /* Compile and Run click event */
     $("#compile-and-run").click(function (){
 
+        //noinspection JSJQueryEfficiency
+        if( $('#compile-success').css('display') != 'none'){
+            $('#compile-success').slideToggle();
+        }
+
+         //noinspection JSJQueryEfficiency
+        if( $('#compile-failed').css('display') != 'none'){
+            $('#compile-failed').slideToggle();
+        }
+        var csrf_token = $("input[name='csrfmiddlewaretoken']").val();
         /* Get content of editor */
         var editor_content = editor.getValue();
         /* Current language of editor */
-        var current_lang = $('editor-lang').val();
+        var current_lang = $('#editor-lang').val();
         /* Disable the button */
         $("#compile-and-run").prop("disabled",true);
         
@@ -153,26 +166,52 @@ $(document).ready(function (){
         }
 
         /* ready json of request */
-        var request_json = {
-            "lang" : current_lang,
-            "source" : editor_content ,
-            "input" : custom_input 
+        var request_data  = {
+            lang : current_lang,
+            source : editor_content ,
+            input : custom_input ,
+            csrfmiddlewaretoken : csrf_token
         };
         
         /* ajax request to server */
         $.ajax({
             url:"/compile-and-run/",
-            data : request_json ,
+            data : request_data ,
             type : 'POST',
             dataType:'json',
             success : function(response){
-                alert("Success");
+                  if(response.compile_status == "OK"){
+                      $('#output-success-pre').html(response.run_status.output_html);
+                      if(custom_input) {
+                          $('#input-success-pre').html(custom_input);
+                      }
+                      else{
+                          $('#input-success-pre').html("Standard input is empty");
+                      }
+                      document.getElementById('compile-success-memory').innerHTML = response.run_status.memory_used;
+                      document.getElementById('compile-success-status').innerHTML = response.run_status.status;
+                      document.getElementById('compile-success-time').innerHTML = response.run_status.time_used;
+                      $('#compile-success').slideToggle();
+                  }
+                 else {
+                      $('#compile-failed-pre').html(response.compile_status);
+                      if(custom_input) {
+                          $('#input-failed-pre').html(custom_input);
+                      }
+                      else{
+                          $('#input-failed-pre').html("Standard input is empty");
+                      }
+
+                      document.getElementById('compile-failed-memory').innerHTML = 0;
+                      document.getElementById('compile-failed-time').innerHTML = 0;
+                      $('#compile-failed').slideToggle();
+                  }
+                   $('#compile-and-run').prop("disabled",false);
             },
             error : function(){
-                alert("failed");
+                alert(" Internal Server Error ");
             }
         });
-
     });
-
+    
 });
