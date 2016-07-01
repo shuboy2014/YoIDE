@@ -3,7 +3,7 @@ from django.http import  JsonResponse
 import requests
 
 RUN_URL = "http://api.hackerearth.com/code/run/"
-CLIENT_SECRET_KEY="fc9bab4fc37aeeb507292c2c5a59e008ee8d345b"
+CLIENT_SECRET_KEY = "fc9bab4fc37aeeb507292c2c5a59e008ee8d345b"
 
 
 def index(request):
@@ -15,8 +15,8 @@ def compile_and_run(request):
         data = {
             'client_secret': CLIENT_SECRET_KEY,
             'async': 0,
-            'source': request.POST.get("source"," "),
-            'lang': request.POST.get("lang",""),
+            'source': request.POST.get("source", " "),
+            'lang': request.POST.get("lang", ""),
             'time_limit': 5,
             'memory_limit': 262144,
         }
@@ -25,13 +25,13 @@ def compile_and_run(request):
         response_data = requests.post(RUN_URL, data=data)
         return JsonResponse(response_data.json(), safe=False)
     else:
-        return render("request", "error.html", {"request": " Oops bad request !! "})
+        return render(request, "error.html", {"test": " Oops bad request !! "})
 
 
 def contact_us(request):
-    return render("request", "contact-us.html", {})
+    return render(request, "Contact-us.html", {})
 
 
 def feedback(request):
-    return render("request", "feedback.html", {})
+    return render(request, "feedback.html", {})
 

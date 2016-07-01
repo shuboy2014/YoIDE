@@ -22,5 +22,5 @@ urlpatterns = [
     url(r'^$', views.index),
     url(r'^compile-and-run/$', views.compile_and_run),
     url(r'^contact-us/$', views.contact_us),
-    url(r'^feedback/$',views.feedback)
+    url(r'^feedback/$', views.feedback)
 ]

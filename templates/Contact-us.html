@@ -1,10 +1,36 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>YoIDE | Contact-us</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <link rel="stylesheet"  type="text/css" href="{% static "css/bootstrap.min.css" %}" />
+    <style> body{ background-color: #D3D3D3 ;}</style>
 </head>
 <body>
+{#    Navigational Bar#}
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header" >
+                <a class="navbar-brand" href="https://yoide.herokuapp.com"><span class="glyphicon glyphicon-home"></span></a>
+                <a class="navbar-brand" href="https://yoide.herokuapp.com" ><strong>YoIDE.net</strong></a>
+            </div>
+            <div class="navbar-header pull-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="/"><strong>Contact us</strong></a></li>
+                    <li><a href="https://yoide.herokuapp.com/feedback/"><strong>feedback</strong></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
+{#    Container start#}
+<div class="container">
+<h1>We will connect to you shortly !</h1>
+</div>
+
+    <script type="text/javascript" src="{% static "js/bootstrap.min.js" %}"></script>
 </body>
 </html>
