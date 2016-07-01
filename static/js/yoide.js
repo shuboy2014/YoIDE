@@ -195,6 +195,7 @@ $(document).ready(function (){
                   }
                  else {
                       $('#compile-failed-pre').html(response.compile_status);
+                      $('#output-failed-pre').html("Standard output is empty");
                       if(custom_input) {
                           $('#input-failed-pre').html(custom_input);
                       }
