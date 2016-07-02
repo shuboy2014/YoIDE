@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="99f2ebf0-de9b-46ab-a850-2447b9a1d8f8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/favicon.ico" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/yoide.css" afterPath="$PROJECT_DIR$/static/css/yoide.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/yoide.js" afterPath="$PROJECT_DIR$/static/js/yoide.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Contact-us.html" afterPath="$PROJECT_DIR$/templates/Contact-us.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/MainYoIde.html" afterPath="$PROJECT_DIR$/templates/MainYoIde.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/feedback.html" afterPath="$PROJECT_DIR$/templates/feedback.html" />
     </list>
     <ignored path="New folder.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -440,7 +434,14 @@
       <option name="project" value="LOCAL" />
       <updated>1467450336145</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add google analytics agian">
+      <created>1467475523187</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1467475523187</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView">
@@ -490,7 +491,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="all done" />
     <MESSAGE value="add google analytics" />
-    <option name="LAST_COMMIT_MESSAGE" value="add google analytics" />
+    <MESSAGE value="add google analytics agian" />
+    <option name="LAST_COMMIT_MESSAGE" value="add google analytics agian" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
