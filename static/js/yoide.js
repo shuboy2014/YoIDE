@@ -18,7 +18,6 @@ $(document).ready(function (){
     INITIAL_CODE['CPP']='#include <iostream>\nusing namespace std;\n\nint main()\n{\n    cout << "Hello World!" << endl;\n    return 0;\n}';
     INITIAL_CODE['CPP11']='#include <iostream>\nusing namespace std;\n\nint main()\n{\n    cout << "Hello World!" << endl;\n    return 0;\n}';
     INITIAL_CODE['CLOJURE']='(println "Hello World!")';
-    INITIAL_CODE['C#']='using System; \nusing System.Numerics;\nclass MyClass {\n    static void Main(string[] args) {\n        /*\n         * Read input from stdin and provide input before running\n        var line1 = System.Console.ReadLine().Trim();\n        var N = Int32.Parse(line1);\n        for (var i = 0; i < N; i++) {\n            System.Console.WriteLine("hello world");\n        }\n        */\n\n        System.Console.WriteLine("Hello World!");\n    }\n}';
     INITIAL_CODE['JAVA']='/* IMPORTANT: class must not be public. */\n\n/*\n * uncomment this if you want to read input.\nimport java.io.BufferedReader;\nimport java.io.InputStreamReader;\n*/\n\nclass TestClass {\n    public static void main(String args[] ) throws Exception {\n        /*\n         * Read input from stdin and provide input before running\n\n        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));\n        String line = br.readLine();\n        int N = Integer.parseInt(line);\n        for (int i = 0; i < N; i++) {\n            System.out.println("hello world");\n        }\n        */\n\n        System.out.println("Hello World!");\n    }\n}';
     INITIAL_CODE['JAVASCRIPT']='function main(input) {\n    //Enter your code here\n    process.stdout.write(input);\n}\n\nprocess.stdin.resume();\nprocess.stdin.setEncoding("utf-8");\nvar stdin_input = "";\n\nprocess.stdin.on("data", function (input) {\n    stdin_input += input;\n});\n\nprocess.stdin.on("end", function () {\n   main(stdin_input);\n});';
     INITIAL_CODE['HASKELL']='module Main\n  where\n\nmain=putStrLn "Hello World!\n"';
@@ -34,7 +33,6 @@ $(document).ready(function (){
     FILE_EXTENSIONS['CPP']=".cpp";
     FILE_EXTENSIONS['CPP11']=".cpp";
     FILE_EXTENSIONS['CLOJURE']=".clj";
-    FILE_EXTENSIONS['C#']=".cs";
     FILE_EXTENSIONS['JAVA']=".java";
     FILE_EXTENSIONS['JAVASCRIPT']=".js";
     FILE_EXTENSIONS['HASKELL']=".hs";
@@ -141,6 +139,12 @@ $(document).ready(function (){
 
     /* Compile and Run click event */
     $("#compile-and-run").click(function (){
+
+        /* when editor content is empty */
+        if(editor.getValue() == "") {
+            alert("Oops ! Nothing to Run .");
+            return ;
+        }
 
         //noinspection JSJQueryEfficiency
         if( $('#compile-success').css('display') != 'none'){

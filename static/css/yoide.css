@@ -1,7 +1,7 @@
 /*body css */
 body{
      background-color: #D3D3D3 ;
-    overflow: auto;
+     overflow: auto;
 }
 
 /* Top to Editor */
@@ -62,6 +62,8 @@ hr {
     display: none;
     margin-top: 6px ;
     padding:1%;
+    border-style: dotted;
+    border-color: darkblue;
     background-color: #D3D3D3;
 }
 /* css for when compilation is failed*/
@@ -69,6 +71,8 @@ hr {
     display: none;
     margin-top: 6px ;
     padding:1%;
+    border-style: dotted;
+    border-color: darkblue;
     background-color: #D3D3D3;
 }
 
