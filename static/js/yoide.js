@@ -191,13 +191,13 @@ $(document).ready(function (){
                       document.getElementById('compile-success-memory').innerHTML = response.run_status.memory_used;
                       document.getElementById('compile-success-status').innerHTML = response.run_status.status;
                       document.getElementById('compile-success-time').innerHTML = response.run_status.time_used;
-                      document.getElementById('compile-success-share-link').innerHTML = response.web_link;
+                      document.getElementById('share-link').innerHTML = response.web_link;
                       $('#compile-success').slideToggle();
                   }
                  else {
                       $('#compile-failed-pre').html(response.compile_status);
                       $('#output-failed-pre').html("Standard output is empty");
-                      document.getElementById('compile-failed-share-link').innerHTML = response.web_link;
+                      document.getElementById('share-link').innerHTML = response.web_link;
                       if(custom_input) {
                           $('#input-failed-pre').html(custom_input);
                       }
@@ -212,7 +212,8 @@ $(document).ready(function (){
                    $('#compile-and-run').prop("disabled",false);
             },
             error : function(){
-                alert(" Internal Server Error ");
+                alert(" Oops ! Server Could not Respond ! ");
+                $('#compile-and-run').prop("disabled",false);
             }
         });
     });
