@@ -11,6 +11,7 @@ def index(request):
 
 
 def compile_and_run(request):
+    # Allowed only is request is ajax and method is POST
     if request.method == "POST" and request.is_ajax():
         data = {
             'client_secret': CLIENT_SECRET_KEY,
@@ -25,7 +26,7 @@ def compile_and_run(request):
         response_data = requests.post(RUN_URL, data=data)
         return JsonResponse(response_data.json(), safe=False)
     else:
-        return render(request, "error.html", {"test": " Oops bad request !! "})
+        return render(request, "error.html", {})
 
 
 def contact_us(request):
