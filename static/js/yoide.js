@@ -78,155 +78,146 @@ $(document).ready(function (){
     var update_content={};
 
     /* Change in theme event */
-    $('#editor-theme').change(Editor_Theme_Change);
-
-    /* save code click event */
-    $('#save-code').click(Save_Code);
-
-    /* Language change event */
-    $('#editor-lang').change(Editor_Lang_Change);
-
-    /* download-code click event */
-    $('#download-editor-code').click(Download_Editor_Code);
-
-    /* when custom input check is clicked */
-    $('#custom-input-checkbox').click(Custom_Input_Container);
-
-    /* Compile and Run click event */
-    $("#compile-and-run").click(Compile_And_Run);
-    
-});
-
-function Editor_Theme_Change() {
+    $('#editor-theme').change(function () {
 
         var current_theme = $('#editor-theme').val();
         editor.setTheme("ace/theme/" + current_theme);
 
-}
-
-function Save_Code(){
-
-    var editor_content = editor.getValue();
-    var current_lang = $('#editor-lang').val();
-    update_content[current_lang]= editor_content ;
-    document.getElementById('save-code').className ="btn btn-success" ;
-
-}
-
-function Download_Editor_Code(){
-
-    var editor_content = editor.getValue();
-    var current_lang = $('#editor-lang').val();
-    var file = new File([editor_content], "Untitled"+FILE_EXTENSIONS[current_lang], {type: "text/plain;charset=utf-8"});
-    saveAs(file);
-
-}
-function Editor_Lang_Change(){
-
-    var current_lang = $('#editor-lang').val();
-
-    if( typeof update_content[current_lang] === 'undefined' ) {
-        editor.setValue(INITIAL_CODE[current_lang]);
-        document.getElementById('save-code').className = "btn btn-info";
-    }
-    else {
-        editor.setValue(update_content[current_lang]);
-        document.getElementById('save-code').className = "btn btn-success";
-    }
-
-    if(current_lang=='CPP11' || current_lang=='CPP' || current_lang == 'C') {
-        editor.getSession().setMode('ace/mode/c_cpp');
-    }
-
-    editor.getSession().setMode('ace/mode/'+current_lang.toLowerCase());
-
-}
-function Custom_Input_Container() {
-
-    $('.custom-input-container').slideToggle();
-
-}
-
-function Compile_And_Run() {
-
-    /* when editor content is empty */
-    if (editor.getValue() == "") {
-        alert("Oops ! Nothing to Run .");
-        return;
-    }
-
-    //noinspection JSJQueryEfficiency
-    if ($('#compile-success').css('display') != 'none') {
-        $('#compile-success').slideToggle();
-    }
-
-    //noinspection JSJQueryEfficiency
-    if ($('#compile-failed').css('display') != 'none') {
-        $('#compile-failed').slideToggle();
-    }
-    var csrf_token = $("input[name='csrfmiddlewaretoken']").val();
-    /* Get content of editor */
-    var editor_content = editor.getValue();
-    /* Current language of editor */
-    var current_lang = $('#editor-lang').val();
-    /* Disable the button */
-    $("#compile-and-run").prop("disabled", true);
-
-    /* Check if custom input in checked or not */
-    var custom_input = null;
-    if ($('#custom-input-checkbox').prop("checked") == true) {
-        custom_input = document.getElementById("custom-input-textbox").value;
-    }
-
-    /* ready json of request */
-    var request_data = {
-        lang: current_lang,
-        source: editor_content,
-        input: custom_input,
-        csrfmiddlewaretoken: csrf_token
-    };
-
-    /* ajax request to server */
-    $.ajax({
-        url: "/compile-and-run/",
-        data: request_data,
-        type: 'POST',
-        dataType: 'json',
-        success: function (response) {
-            if (response.compile_status == "OK") {
-                $('#output-success-pre').html(response.run_status.output_html);
-                if (custom_input) {
-                    $('#input-success-pre').html(custom_input);
-                }
-                else {
-                    $('#input-success-pre').html("Standard input is empty");
-                }
-                document.getElementById('compile-success-memory').innerHTML = response.run_status.memory_used;
-                document.getElementById('compile-success-status').innerHTML = response.run_status.status;
-                document.getElementById('compile-success-time').innerHTML = response.run_status.time_used;
-                document.getElementById('share-link').innerHTML = response.web_link;
-                $('#compile-success').slideToggle();
-            }
-            else {
-                $('#compile-failed-pre').html(response.compile_status);
-                $('#output-failed-pre').html("Standard output is empty");
-                document.getElementById('share-link').innerHTML = response.web_link;
-                if (custom_input) {
-                    $('#input-failed-pre').html(custom_input);
-                }
-                else {
-                    $('#input-failed-pre').html("Standard input is empty");
-                }
-
-                document.getElementById('compile-failed-memory').innerHTML = 0;
-                document.getElementById('compile-failed-time').innerHTML = 0;
-                $('#compile-failed').slideToggle();
-            }
-            $('#compile-and-run').prop("disabled", false);
-        },
-        error: function () {
-            alert(" Oops ! Server Could not Respond ! ");
-            $('#compile-and-run').prop("disabled", false);
-        }
     });
-}
+
+
+    /* save code click event */
+    $('#save-code').click(function () {
+
+        var editor_content = editor.getValue();
+        var current_lang = $('#editor-lang').val();
+        update_content[current_lang]= editor_content ;
+        document.getElementById('save-code').className ="btn btn-success" ;
+
+    });
+
+    /* Language change event */
+    $('#editor-lang').change(function () {
+
+        var current_lang = $('#editor-lang').val();
+
+        if( typeof update_content[current_lang] === 'undefined' ) {
+            editor.setValue(INITIAL_CODE[current_lang]);
+            document.getElementById('save-code').className = "btn btn-info";
+        }
+        else {
+            editor.setValue(update_content[current_lang]);
+            document.getElementById('save-code').className = "btn btn-success";
+        }
+
+        if(current_lang=='CPP11' || current_lang=='CPP' || current_lang == 'C') {
+            editor.getSession().setMode('ace/mode/c_cpp');
+        }
+
+        editor.getSession().setMode('ace/mode/'+current_lang.toLowerCase());
+
+    });
+
+    /* download-code click event */
+    $('#download-editor-code').click(function(){
+
+        var editor_content = editor.getValue();
+        var current_lang = $('#editor-lang').val();
+        var file = new File([editor_content], "Untitled"+FILE_EXTENSIONS[current_lang], {type: "text/plain;charset=utf-8"});
+        saveAs(file);
+
+    });
+
+    /* when custom input check is clicked */
+    $('#custom-input-checkbox').click(function () {
+
+        $('.custom-input-container').slideToggle();
+
+    });
+
+    /* Compile and Run click event */
+    $("#compile-and-run").click(function() {
+
+        /* when editor content is empty */
+        if (editor.getValue() == "") {
+            alert("Oops ! Nothing to Run .");
+            return;
+        }
+
+        //noinspection JSJQueryEfficiency
+        if ($('#compile-success').css('display') != 'none') {
+            $('#compile-success').slideToggle();
+        }
+
+        //noinspection JSJQueryEfficiency
+        if ($('#compile-failed').css('display') != 'none') {
+            $('#compile-failed').slideToggle();
+        }
+        var csrf_token = $("input[name='csrfmiddlewaretoken']").val();
+        /* Get content of editor */
+        var editor_content = editor.getValue();
+        /* Current language of editor */
+        var current_lang = $('#editor-lang').val();
+        /* Disable the button */
+        $("#compile-and-run").prop("disabled", true);
+
+        /* Check if custom input in checked or not */
+        var custom_input = null;
+        if ($('#custom-input-checkbox').prop("checked") == true) {
+            custom_input = document.getElementById("custom-input-textbox").value;
+        }
+
+        /* ready json of request */
+        var request_data = {
+            lang: current_lang,
+            source: editor_content,
+            input: custom_input,
+            csrfmiddlewaretoken: csrf_token
+        };
+
+        /* ajax request to server */
+        $.ajax({
+            url: "/compile-and-run/",
+            data: request_data,
+            type: 'POST',
+            dataType: 'json',
+            success: function (response) {
+                if (response.compile_status == "OK") {
+                    $('#output-success-pre').html(response.run_status.output_html);
+                    if (custom_input) {
+                        $('#input-success-pre').html(custom_input);
+                    }
+                    else {
+                        $('#input-success-pre').html("Standard input is empty");
+                    }
+                    document.getElementById('compile-success-memory').innerHTML = response.run_status.memory_used;
+                    document.getElementById('compile-success-status').innerHTML = response.run_status.status;
+                    document.getElementById('compile-success-time').innerHTML = response.run_status.time_used;
+                    document.getElementById('share-link').innerHTML = response.web_link;
+                    $('#compile-success').slideToggle();
+                }
+                else {
+                    $('#compile-failed-pre').html(response.compile_status);
+                    $('#output-failed-pre').html("Standard output is empty");
+                    document.getElementById('share-link').innerHTML = response.web_link;
+                    if (custom_input) {
+                        $('#input-failed-pre').html(custom_input);
+                    }
+                    else {
+                        $('#input-failed-pre').html("Standard input is empty");
+                    }
+
+                    document.getElementById('compile-failed-memory').innerHTML = 0;
+                    document.getElementById('compile-failed-time').innerHTML = 0;
+                    $('#compile-failed').slideToggle();
+                }
+                $('#compile-and-run').prop("disabled", false);
+            },
+            error: function () {
+                alert(" Oops ! Server Could not Respond ! ");
+                $('#compile-and-run').prop("disabled", false);
+            }
+        });
+    });
+    
+});
