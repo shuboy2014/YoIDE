@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import  JsonResponse
-import requests
+import requests, datetime
 from models import Hits
 RUN_URL = "http://api.hackerearth.com/code/run/"
 CLIENT_SECRET_KEY = "fc9bab4fc37aeeb507292c2c5a59e008ee8d345b"
