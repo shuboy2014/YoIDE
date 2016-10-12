@@ -1,16 +1,33 @@
 from django.shortcuts import render
-from django.http import  JsonResponse
-import requests
+from django.http import JsonResponse
+from models import Hits
+import requests, datetime
 
 RUN_URL = "http://api.hackerearth.com/code/run/"
 CLIENT_SECRET_KEY = "***********************************"
 
 
 def index(request):
+    updatehits()
     return render(request, "MainYoIde.html", {})
 
 
+# update hits
+def updatehits():
+    hit = Hits.objects.filter(date=datetime.date.today())
+    if hit:
+        hit_object = hit[0]
+        hit_object.hits += 1
+        hit_object.save()
+    else:
+        hit_object = Hits.objects.create(date=datetime.date.today())
+        hit_object.hits += 1
+        hit_object.save()
+    return
+
+
 def compile_and_run(request):
+    updatehits()
     if request.method == "POST" and request.is_ajax():
         data = {
             'client_secret': CLIENT_SECRET_KEY,
@@ -29,9 +46,10 @@ def compile_and_run(request):
 
 
 def contact_us(request):
+    updatehits()
     return render(request, "Contact-us.html", {})
 
 
 def feedback(request):
+    updatehits()
     return render(request, "feedback.html", {})
-
