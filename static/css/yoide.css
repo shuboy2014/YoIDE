@@ -1,83 +1,89 @@
 /*body css */
-body{
-     background-color: #D3D3D3 ;
-     overflow: auto;
+body {
+    background-color: #D3D3D3;
+    overflow: auto;
+}
+
+.navbar {
+    border-radius: 0;
 }
 
 /* Top to Editor */
 .Top-to-editor {
-	margin: 0;
-	padding:1%;
-	height: 56px;
-	background-color: rgb(245, 245, 245);
+    margin: 0;
+    padding: 1%;
+    height: 56px;
+    background-color: rgb(245, 245, 245);
 }
 
 /* Download button */
-.download-btn{
-    padding-left: 696px ;
+.download-btn {
+    padding-left: 696px;
 }
 
 /* Editor */
-#editor{
+#editor {
     margin: 0%;
     height: 425px;
 }
 
 /* bottom-to-editor*/
-#bottom-to-editor{
-    margin:0%;
-    height:25px;
+#bottom-to-editor {
+    margin: 0%;
+    height: 25px;
     background-color: #D3D3D3;
 }
+
 /* Checkbox */
-#custom-input-checkbox{
+#custom-input-checkbox {
     margin-top: 10px;
     margin-bottom: 0px;
 }
 
 /* custom-input-container css*/
-.custom-input-container{
+.custom-input-container {
     display: none;
-    margin-top: 10px ;
+    margin-top: 10px;
 }
 
 hr {
-   display: block;
-   position: relative;
-   padding: 0;
-   margin: 8px auto;
-   height: 0;
-   width: 100%;
-   max-height: 0;
-   font-size: 1px;
-   line-height: 0;
-   clear: both;
-   border: none;
-   border-top: 1px solid #aaaaaa;
-   border-bottom: 1px solid #ffffff;
+    display: block;
+    position: relative;
+    padding: 0;
+    margin: 8px auto;
+    height: 0;
+    width: 100%;
+    max-height: 0;
+    font-size: 1px;
+    line-height: 0;
+    clear: both;
+    border: none;
+    border-top: 1px solid #aaaaaa;
+    border-bottom: 1px solid #ffffff;
 }
 
 /* css for when compilation is done successfully */
-.compile-done{
+.compile-done {
     display: none;
-    margin-top: 6px ;
-    padding:1%;
+    margin-top: 6px;
+    padding: 1%;
     border-style: dotted;
     border-color: darkblue;
     background-color: #D3D3D3;
 }
+
 /* css for when compilation is failed*/
-.compile-not-done{
+.compile-not-done {
     display: none;
-    margin-top: 6px ;
-    padding:1%;
+    margin-top: 6px;
+    padding: 1%;
     border-style: dotted;
     border-color: darkblue;
     background-color: #D3D3D3;
 }
 
 /* pre tag attribute */
-pre{
+pre {
     max-height: 500px;
     overflow: auto;
 }
