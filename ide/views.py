@@ -1,12 +1,15 @@
 from django.shortcuts import render
-from django.http import  JsonResponse
+from django.http import JsonResponse
 import requests
+from decouple import config
+
 RUN_URL = "http://api.hackerearth.com/code/run/"
-CLIENT_SECRET_KEY = "fc9bab4fc37aeeb507292c2c5a59e008ee8d345b"
+CLIENT_SECRET_KEY = config('CLIENT_SECRET_KEY')
 
 
 def index(request):
     return render(request, "MainYoIde.html", {})
+
 
 def compile_and_run(request):
     if request.method == "POST" and request.is_ajax():
@@ -32,4 +35,3 @@ def contact_us(request):
 
 def feedback(request):
     return render(request, "feedback.html", {})
-
