@@ -4,8 +4,8 @@ body {
     overflow: auto;
 }
 
-.navbar {
-    border-radius: 0;
+.navbar-default {
+    border-radius: 0 !important;
 }
 
 /* Top to Editor */
@@ -23,13 +23,13 @@ body {
 
 /* Editor */
 #editor {
-    margin: 0%;
+    margin: 0;
     height: 425px;
 }
 
 /* bottom-to-editor*/
 #bottom-to-editor {
-    margin: 0%;
+    margin: 0;
     height: 25px;
     background-color: #D3D3D3;
 }
@@ -37,7 +37,7 @@ body {
 /* Checkbox */
 #custom-input-checkbox {
     margin-top: 10px;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 /* custom-input-container css*/
